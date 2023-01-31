@@ -5,17 +5,20 @@ import com.food.ordering.system.order.service.domain.dto.create.CreateOrderRespo
 import com.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
 import com.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.food.ordering.system.order.service.domain.port.input.service.OrderApplicationService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+
+@Component
+@Validated
+@Slf4j
+@RequiredArgsConstructor
 public class OrderApplicationServiceImpl implements OrderApplicationService {
 
     private final OrderCreateCommandHandler orderCreateCommandHandler;
     private final OrderTrackCommandHandler orderTrackCommandHandler;
-
-    public OrderApplicationServiceImpl(OrderCreateCommandHandler orderCreateCommandHandler,
-                                       OrderTrackCommandHandler orderTrackCommandHandler) {
-        this.orderCreateCommandHandler = orderCreateCommandHandler;
-        this.orderTrackCommandHandler = orderTrackCommandHandler;
-    }
 
 
     @Override
@@ -28,5 +31,6 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
     public TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
 
         return orderTrackCommandHandler.trackOrder(trackOrderQuery);
+
     }
 }
