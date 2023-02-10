@@ -5,8 +5,8 @@ import org.apache.avro.specific.SpecificRecordBase;
 import java.util.List;
 
 public interface KafkaConsumer <T extends SpecificRecordBase>{
-    void recieve(List<T> messages,
-                 List<Long> keys,
+    void receive(List<T> messages,
+                 List<String> keys,
                  List<Integer> paritions,
                  List<Long> offsets);
 }

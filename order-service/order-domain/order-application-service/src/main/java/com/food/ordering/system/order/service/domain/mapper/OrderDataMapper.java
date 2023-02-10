@@ -26,8 +26,8 @@ public class OrderDataMapper {
             CreateOrderCommand createOrderCommand){
 
         return Restudent.builder()
-                .id(new RestudentId(createOrderCommand.getRestudentId()))
-                .products(createOrderCommand.getItem().stream().map(orderItem ->
+                .id(new RestudentId(createOrderCommand.getRestaurantId()))
+                .products(createOrderCommand.getItems().stream().map(orderItem ->
                         new Product(new ProductId(orderItem.getProductId())))
                 .collect(Collectors.toList())
                 )
@@ -53,10 +53,10 @@ public class OrderDataMapper {
     public Order createOrderCommandToOrder(CreateOrderCommand createOrderCommand){
         return Order.builder()
                 .customerId(new CustomerId(createOrderCommand.getCustomerId()))
-                .restudentId(new RestudentId(createOrderCommand.getRestudentId()))
+                .restudentId(new RestudentId(createOrderCommand.getRestaurantId()))
                 .deliveryAddress(orderAddressToStreetAddress(createOrderCommand.getAddress()))
                 .price(new Money(createOrderCommand.getPrice()))
-                .items(orderItemsToOrderItemEntities(createOrderCommand.getItem()))
+                .items(orderItemsToOrderItemEntities(createOrderCommand.getItems()))
                 .build();
     }
 
@@ -77,7 +77,7 @@ public class OrderDataMapper {
                                 .product(new Product(new ProductId(orderItem.getProductId())))
                                 .price(new Money(orderItem.getPrice()))
                                 .quantity(orderItem.getQuantity())
-                                .subTotal(new Money(orderItem.getSubtotal()))
+                                .subTotal(new Money(orderItem.getSubTotal()))
                                 .build())
                 .collect(Collectors.toList());
 

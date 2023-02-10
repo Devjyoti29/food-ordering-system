@@ -17,11 +17,11 @@ public class CreateOrderCommand {
     @NotNull
     private final UUID customerId;
     @NotNull
-    private final UUID restudentId;
+    private final UUID restaurantId;
     @NotNull
     private final BigDecimal price;
     @NotNull
-    private final List<OrderItem> item;
+    private final List<OrderItem> items;
     @NotNull
     private final OrderAddress address;
 

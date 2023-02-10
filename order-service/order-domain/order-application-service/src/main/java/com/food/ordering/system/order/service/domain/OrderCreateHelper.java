@@ -77,7 +77,7 @@ public class OrderCreateHelper {
         Optional<Restudent> optionalRestudent=restaurantRepository.findRestaurantInformation(restudent);
 
         if(optionalRestudent.isEmpty()){
-            log.warn("Could not find restaurant with restaurant id {}",createOrderCommand.getRestudentId());
+            log.warn("Could not find restaurant with restaurant id {}",createOrderCommand.getRestaurantId());
             throw new OrderDomainException("Could not find restaurant with id: "+
                     createOrderCommand.getCustomerId());
         }
